@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Pivoted</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      section h2, section p { font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Pivoted</h1>
+      <p>Digest of stories from the <%= project.name %> pivotal tracker.</p>
+    </header>
+    <% stories.each do |story| %>
+    <section>
+      <h2><%= story.name %> (<%= story_meta(story).join(", ") %>)</h2>
+      <p><%= story.description %></p>
+    </section>
+    <% end %>
+  </body>
+</html>
