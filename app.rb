@@ -1,22 +1,10 @@
 require 'sinatra'
 require 'pivotal-tracker'
 
-class PivotedConfig
-  def self.username
-    ENV['USERNAME'] || raise("You must set a username env var")
-  end
-  def self.password
-    ENV['PASSWORD'] || raise("You must set a password env var")
-  end
-  def self.project
-    ENV['PROJECT'] || raise("You must set a project env var")
-  end
-  def self.label
-    ENV['LABEL'] || raise("You must set a filtering label")
-  end
-end
-
 helpers do
+  def from_env(key)
+    ENV[key] || raise("You must set the #{key} environment variable")
+  end
   def story_meta(story)
     meta = [story.story_type]
     if story.story_type == 'feature'
@@ -32,8 +20,8 @@ helpers do
 end
 
 get '/' do
-  PivotalTracker::Client.token(PivotedConfig.username, PivotedConfig.password)
-  project = PivotalTracker::Project.find(PivotedConfig.project)
-  stories = project.stories.all(:label => PivotedConfig.label)
+  PivotalTracker::Client.token(from_env('USERNAME'), from_env('PASSWORD'))
+  project = PivotalTracker::Project.find(from_env('PROJECT'))
+  stories = project.stories.all(:label => from_env('LABEL'))
   erb :index, locals: { project: project, stories: stories }
 end
