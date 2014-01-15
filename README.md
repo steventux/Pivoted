@@ -12,7 +12,7 @@ Well you might not want everyone poking about in your icebox.
 
 Pivoted relies on some environment variables for pivotal auth. e.g.
 
-$ bundle exec USERNAME=dude PASSWORD=thedudeabides PROJECT=666 LABEL=public-stuff ruby app.rb
+```$ bundle exec USERNAME=dude PASSWORD=thedudeabides PROJECT=666 LABEL=public-stuff ruby app.rb```
 
 ## Tests
 
