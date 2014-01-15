@@ -13,11 +13,15 @@
       <h1>Pivoted</h1>
       <p>Digest of stories from the <%= project.name %> pivotal tracker.</p>
     </header>
-    <% stories.each do |story| %>
     <section>
-      <h2><%= story.name %> (<%= story_meta(story).join(", ") %>)</h2>
-      <p><%= story.description %></p>
+      <ol>
+      <% stories.each do |story| %>
+        <li>
+          <h2><%= story.name %> (<%= story_meta(story).join(", ") %>)</h2>
+          <p><%= story.description %></p>
+        </li>
+      <% end %>
+      </ol>
     </section>
-    <% end %>
   </body>
 </html>
