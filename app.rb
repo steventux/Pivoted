@@ -38,7 +38,7 @@ end
 
 get '/' do
   PivotalTracker::Client.token(from_env('USERNAME'), from_env('PASSWORD'))
-  project = PivotalTracker::Project.find(from_env('PROJECT'))
+  project = PivotalTracker::Project.find(params[:project] || from_env('PROJECT'))
   story_filter = { :includedone => true }
   story_filter[:label] = params[:label] if params[:label]
 
