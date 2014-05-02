@@ -62,3 +62,7 @@ get '/' do
     data_array: data_array
   }
 end
+
+get '/healthcheck' do
+  'OK'
+end
