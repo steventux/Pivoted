@@ -2,18 +2,18 @@
 Pivoted
 =======
 
-A digest of filtered stories from the pivotal tracker of your choice.
+Breakdown of stories over time matching search criteria from the pivotal tracker of your choice.
 
 ## Why?
 
-Well you might not want everyone poking about in your icebox.
+It will tell you what's kept you busy
 
 ## Usage
 
 Pivoted relies on some environment variables for pivotal auth. e.g.
 
-```$ USERNAME=dude PASSWORD=thedudeabides PROJECT=666 LABEL=public-stuff bundle exec ruby app.rb```
+```$ USERNAME=dude PASSWORD=thedudeabides PROJECT=666 bundle exec ruby app.rb```
 
 ## Tests
 
-Calm down dear it's webscale. (It's a 20 min prototype).
+It's a prototype. Sorry. Add some if it offends you.
