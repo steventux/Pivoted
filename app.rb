@@ -34,6 +34,18 @@ helpers do
   def query_terms(query)
     query.split(",").map(&:strip)
   end
+
+  def label_text(label)
+    if label
+      " labelled '#{label}'"
+    else
+      ""
+    end
+  end
+
+  def title(project, label = nil)
+    "Stories#{label_text(label)} from the #{project.name} pivotal tracker"
+  end
 end
 
 get '/' do
@@ -47,7 +59,9 @@ get '/' do
   start_date = Date.parse(params[:start_date])
   end_date = Date.parse(params[:end_date])
 
-  headings = ["Week starting", "Total stories (for label)"]
+  total_heading = "Total stories#{label_text(params[:label])}"
+  headings = ["Week starting", total_heading]
+
   if params[:query]
     terms = query_terms(params[:query])
     headings += terms
@@ -59,6 +73,7 @@ get '/' do
 
   erb :index, locals: {
     project: project,
+    title: title(project, params[:label]),
     data_array: data_array
   }
 end

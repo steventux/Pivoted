@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Pivoted</title>
+    <title><%= title %> | Pivoted</title>
     <style>
       body {
         font-family: sans-serif;
@@ -16,14 +16,18 @@
           <%= data_array.to_s %>
         );
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, {});
+        chart.draw(data, {
+          // curveType: 'function',
+          hAxis: { slantedText: true },
+          legend: { position: 'top' },
+          title: "<%= title %>"
+        });
       }
     </script>
   </head>
   <body>
     <header>
-      <h1>Pivoted</h1>
-      <p>Stories from the <%= project.name %> pivotal tracker.</p>
+      <h1>Pivoted</p>
     </header>
     <section>
       <!--div>
