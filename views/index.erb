@@ -7,21 +7,39 @@
       }
       section h2, section p { font-size: 0.9em; }
     </style>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(
+          <%= data_array.to_s %>
+        );
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, {});
+      }
+    </script>
   </head>
   <body>
     <header>
       <h1>Pivoted</h1>
-      <p>Digest of stories from the <%= project.name %> pivotal tracker.</p>
+      <p>Stories from the <%= project.name %> pivotal tracker.</p>
     </header>
     <section>
-      <ol>
-      <% stories.each do |story| %>
-        <li>
-          <h2><%= story.name %> (<%= story_meta(story).join(", ") %>)</h2>
-          <p><%= story.description %></p>
-        </li>
-      <% end %>
-      </ol>
+      <!--div>
+        <form action="/" method="get">
+          Stories taggged <input type="tags" name="" placeholder="smart-answer, calculator"/>
+          <br/>
+          Created between <input type="text" name="start_date" placeholder="01/01/2014"/>
+          and <input type="text" name="end_date" placeholder="31/12/2014"/>
+          <br/>
+          Containing text <input type="text" name="query" placeholder="passport, marriage, death"/>
+          <br/>
+          <input type="submit" value="Search"/>
+        </form>
+      </div>
+      <hr/-->
+      <div id="chart_div"></div>
     </section>
   </body>
 </html>
